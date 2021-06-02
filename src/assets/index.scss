@@ -1,0 +1,44 @@
+.react-form {
+  $root: &;
+
+  &__field-label {
+    margin-left: 15px;
+    position: relative;
+
+    &.is-req {
+      &:before {
+        position: absolute;
+        color: #fc3333;
+        font-weight: bold;
+        content: '*';
+        margin-right: 4px;
+        transform: translateX(-10px);
+      }
+    }
+  }
+
+  &__field-input {
+    align-self: center;
+    flex: 1;
+    position: relative;
+  }
+
+  &__field {
+    margin-bottom: 24px;
+
+    transition: border-color 300ms;
+
+    &.is-req-error,
+    &.is-error {
+
+    }
+
+    &-error {
+      color: #fc3333;
+      font-size: 12px;
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 15px;
+    }
+  }
+}

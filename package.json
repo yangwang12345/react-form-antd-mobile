@@ -1,0 +1,62 @@
+{
+  "name": "@kne/react-form-antd-mobile",
+  "version": "1.2.0-alpha.0.1",
+  "description": "用于表单验证的react组件",
+  "author": "https://github.com/kne-union",
+  "license": "MIT",
+  "repository": "https://github.com/kne-union/react-form",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "init": "run-p npm install cd example && npm install",
+    "start": "run-p start:lib start:example",
+    "build": "run-s build:lib build:example",
+    "build:lib": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
+    "start:lib": "microbundle watch --no-compress --format modern,cjs --jsx React.createElement",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "build:example": "cd example && npm run build",
+    "start:example": "cd example && npm run start",
+    "deploy": "gh-pages -d example/build"
+  },
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x",
+    "react-dom": "16.x",
+    "antd-mobile": "^2.3.4"
+  },
+  "devDependencies": {
+    "antd-mobile": "^2.3.4",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.27.0",
+    "eslint-config-react-app": "^6.0.0",
+    "fs-extra": "^10.0.0",
+    "gh-pages": "^2.2.0",
+    "glob": "^7.1.7",
+    "microbundle": "^0.13.1",
+    "node-sass": "^6.0.0",
+    "npm-run-all": "^4.1.5",
+    "pify": "^5.0.0",
+    "prettier": "^2.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@kne/react-form": "^1.2.0-alpha.0.3",
+    "@kne/react-form-helper": "^1.0.2",
+    "classnames": "^2.3.1",
+    "lodash": "^4.17.21"
+  }
+}
