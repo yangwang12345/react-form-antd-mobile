@@ -1,6 +1,6 @@
 {
   "name": "@kne/react-form-antd-mobile",
-  "version": "1.2.0-alpha.0.1",
+  "version": "1.2.0-alpha.0.4",
   "description": "用于表单验证的react组件",
   "author": "https://github.com/kne-union",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "init": "run-p npm install cd example && npm install",
+    "init": "npm install && cd example && npm install",
     "start": "run-p start:lib start:example",
     "build": "run-s build:lib build:example",
     "build:lib": "microbundle --no-compress --format modern,cjs --jsx React.createElement",
@@ -54,8 +54,9 @@
     "dist"
   ],
   "dependencies": {
+    "@kne/react-avatar-upload": "^1.0.0-alpha.0.2",
     "@kne/react-form": "^1.2.0-alpha.0.3",
-    "@kne/react-form-helper": "^1.0.2",
+    "@kne/react-form-helper": "^1.0.3",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21"
   }

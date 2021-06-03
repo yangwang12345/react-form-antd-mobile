@@ -7,6 +7,13 @@ export const globalParams = {
     avatar: {
       uploadSender: (file) => {
         console.log(file);
+        return file;
+      }
+    },
+    imagePicker: {
+      uploadSender: (file) => {
+        console.log(file);
+        return file;
       }
     }
   }
