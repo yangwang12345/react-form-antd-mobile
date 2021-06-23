@@ -3,6 +3,7 @@ import Form, {
   DatePicker,
   Switch,
   Checkbox,
+  CheckboxGroupModal,
   CheckboxGroup,
   RadioGroup,
   Picker,
@@ -10,10 +11,15 @@ import Form, {
   Upload,
   ImagePicker,
   SubmitButton,
+  interceptors,
   preset
 } from 'react-form-antd-mobile';
 import { List } from 'antd-mobile';
 import axios from 'axios';
+
+interceptors.input.use('date', (value) => {
+  return new Date(value);
+});
 
 const uploadSender = ({ file }) => {
   const formData = new FormData();
@@ -66,7 +72,15 @@ function App() {
     <div>
       <Form
         debug
-        data={{}}
+        data={{
+          'imgs': [
+            {
+              url: 'http://static.knxgalaxy.com/upload_assets/app/7397ed79ebc7a28034941156d78747ac.jpeg',
+              filename: 'xxx.jpg'
+            }
+          ],
+          date: '2010-07-21 00:01'
+        }}
         onSubmit={data => {
           console.log(data);
         }}>
@@ -74,11 +88,15 @@ function App() {
           <Upload name="file" label="文件"/>
           <Avatar name="avatar" label="头像"/>
           <ImagePicker name="imgs" label="图片" multiple/>
-          <InputItem name="name" label="名称" rule="LEN-0-10"/>
+          <InputItem name="name" label="名称" rule="LEN-0-10" placeholder="请填写"/>
           <InputItem name="name2" label="名称" rule="LEN-0-10"/>
-          <DatePicker name="date" label="日期"/>
+          <DatePicker name="date" label="日期" interceptor="date"/>
           <Switch name="swtich" label="开关"/>
           <Picker name="picker" label="选择" data={[{ label: '啊啊啊', value: 0 }, { label: '重中之重', value: 1 }]}/>
+          <CheckboxGroupModal name="checkboxModal" label="多选" options={[
+            { label: '啊啊啊', value: 0 },
+            { label: '哈哈哈哈哈', value: 1 }
+          ]} placeholder="请填写"/>
           <CheckboxGroup name="checkbox" label="多选" options={[
             { label: '啊啊啊', value: 0 },
             { label: '哈哈哈哈哈', value: 1 }
