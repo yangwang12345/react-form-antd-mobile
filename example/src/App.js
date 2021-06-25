@@ -12,13 +12,22 @@ import Form, {
   ImagePicker,
   SubmitButton,
   interceptors,
+  TreeInput,
   preset
-} from 'react-form-antd-mobile';
+} from '@kne/react-form-antd-mobile';
 import { List } from 'antd-mobile';
 import axios from 'axios';
 
 interceptors.input.use('date', (value) => {
   return new Date(value);
+});
+
+interceptors.output.use('alone-array', (value) => {
+  return value[0];
+});
+
+interceptors.input.use('alone-array', (value) => {
+  return [value];
 });
 
 const uploadSender = ({ file }) => {
@@ -67,6 +76,32 @@ preset({
   }
 });
 
+const treeData = [
+  {
+    key: '0-0',
+    title: 'parent 1',
+    children: [
+      { key: '0-0-0', title: 'parent 1-1', children: [{ key: '0-0-0-0', title: 'parent 1-1-0' }] },
+      {
+        key: '0-0-1',
+        title: 'parent 1-2',
+        children: [
+          { key: '0-0-1-0', title: 'parent 1-2-0' },
+          { key: '0-0-1-1', title: 'parent 1-2-1' },
+          { key: '0-0-1-2', title: 'parent 1-2-2' },
+          { key: '0-0-1-3', title: 'parent 1-2-3' },
+          { key: '0-0-1-4', title: 'parent 1-2-4' },
+          { key: '0-0-1-5', title: 'parent 1-2-5' },
+          { key: '0-0-1-6', title: 'parent 1-2-6' },
+          { key: '0-0-1-7', title: 'parent 1-2-7' },
+          { key: '0-0-1-8', title: 'parent 1-2-8' },
+          { key: '0-0-1-9', title: 'parent 1-2-9' }
+        ]
+      }
+    ]
+  }
+];
+
 function App() {
   return (
     <div>
@@ -85,6 +120,7 @@ function App() {
           console.log(data);
         }}>
         <List>
+          <TreeInput name="tree" label="树选择" interceptor="alone-array" treeData={treeData} defaultExpandAll/>
           <Upload name="file" label="文件"/>
           <Avatar name="avatar" label="头像"/>
           <ImagePicker name="imgs" label="图片" multiple/>

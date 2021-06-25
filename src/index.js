@@ -12,9 +12,11 @@ import Radio$ from './fields/Radio';
 import RadioGroup$ from './fields/RadioGroup';
 import Switch$ from './fields/Switch';
 import TextareaItem$ from './fields/TextareaItem';
+import TreeInput$ from './fields/TreeInput';
 import Upload$ from './fields/Upload';
 
 export * from './Form';
+export * from '@kne/react-form-helper';
 export default Form;
 export {default as preset} from './preset';
 export {default as ResetButton} from './ResetButton';
@@ -32,6 +34,7 @@ export const Radio = Radio$;
 export const RadioGroup = RadioGroup$;
 export const Switch = Switch$;
 export const TextareaItem = TextareaItem$;
+export const TreeInput = TreeInput$;
 export const Upload = Upload$;
 
-export const fields = { Avatar, Checkbox, CheckboxGroup, CheckboxGroupModal, DatePicker, ImagePicker, InputItem, Picker, Radio, RadioGroup, Switch, TextareaItem, Upload };
+export const fields = { Avatar, Checkbox, CheckboxGroup, CheckboxGroupModal, DatePicker, ImagePicker, InputItem, Picker, Radio, RadioGroup, Switch, TextareaItem, TreeInput, Upload };

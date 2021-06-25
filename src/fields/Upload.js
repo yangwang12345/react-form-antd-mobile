@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { List, Modal, Button } from 'antd-mobile';
 import { globalParams } from '../preset';
 import { hooks } from '@kne/react-form-helper';
+import { PhotoView } from '@kne/react-photo-view';
 import classnames from 'classnames';
 import withComponentPropsClassName from '../common/withComponentPropsClassName';
 import withLayer from '../common/withLayer';
+import '@kne/react-photo-view/dist/index.css';
 
 const Preview = ({ loading, error, images }) => {
   if (loading) {
@@ -13,7 +15,7 @@ const Preview = ({ loading, error, images }) => {
   if (error) {
     return <div>预览失败:{error}</div>;
   }
-  return images.map((url) => <img key={url} src={url} alt="文件预览"/>);
+  return <PhotoView images={images}/>;
 };
 
 const createPreview = withLayer(({ url, close, ...props }) => {
@@ -36,9 +38,8 @@ const createPreview = withLayer(({ url, close, ...props }) => {
       setError('格式不支持');
     }
   }, [url]);
-  return <Modal {...props} className="upload-field__preview-modal">
+  return <Modal {...props} closable onClose={close} title="预览" className="upload-field__preview-modal">
     <Preview className="upload-field__preview" loading={loading} error={error} images={images}/>
-    <Button className="upload-field__preview-btn" onClick={close}>关闭页面</Button>
   </Modal>;
 });
 

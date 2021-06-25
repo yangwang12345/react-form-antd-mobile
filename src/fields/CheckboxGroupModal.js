@@ -10,7 +10,7 @@ const CheckboxItem = Checkbox.CheckboxItem;
 
 const Item = List.Item;
 
-const CheckboxGroupModal = ({ value: propsValue, placeholder, onChange, options }) => {
+const CheckboxGroupModal = ({ className, value: propsValue, placeholder, onChange, options }) => {
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState(propsValue);
   useEffect(() => {
@@ -22,7 +22,7 @@ const CheckboxGroupModal = ({ value: propsValue, placeholder, onChange, options 
     }).join(',');
   }, [value, options]);
   return (
-    <Item arrow="horizontal" onClick={() => {
+    <Item className={className} arrow="horizontal" onClick={() => {
       setVisible(true);
     }}>
       {labels || placeholder || '请选择'}

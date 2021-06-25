@@ -1,5 +1,5 @@
 import './index.css';
-import 'react-form-antd-mobile/dist/index.css';
+import '@kne/react-form-antd-mobile/dist/index.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import React from 'react';
 import ReactDOM from 'react-dom';

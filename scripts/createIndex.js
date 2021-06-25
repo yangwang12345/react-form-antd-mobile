@@ -11,6 +11,7 @@ ${filenames.map((name)=>`
 import ${name}$ from './fields/${name}';`).join('')}
 
 export * from './Form';
+export * from '@kne/react-form-helper';
 export default Form;
 export {default as preset} from './preset';
 export {default as ResetButton} from './ResetButton';
