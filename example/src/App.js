@@ -76,6 +76,18 @@ preset({
   }
 });
 
+/*[{
+  'key': 5,
+  'title': '根节点',
+  'disabled': true,
+  'children': [{
+    'key': 1,
+    'title': '管理序列',
+    'disabled': true,
+    'children': [{ 'key': 1, 'title': 'S1' }, { 'key': 24, 'title': 'S3' }]
+  }, { 'key': 4, 'title': '专业序列', 'disabled': true, 'children': [{ 'key': 2, 'title': 'S2' }] }]
+}]*/
+
 const treeData = [
   {
     key: '0-0',
@@ -85,6 +97,7 @@ const treeData = [
       {
         key: '0-0-1',
         title: 'parent 1-2',
+        disabled: true,
         children: [
           { key: '0-0-1-0', title: 'parent 1-2-0' },
           { key: '0-0-1-1', title: 'parent 1-2-1' },
@@ -120,7 +133,7 @@ function App() {
           console.log(data);
         }}>
         <List>
-          <TreeInput name="tree" label="树选择" interceptor="alone-array" treeData={treeData} defaultExpandAll/>
+          <TreeInput className="xxxxx" name="tree" label="树选择" rule="REQ" interceptor="alone-array" treeData={treeData} defaultExpandAll/>
           <Upload name="file" label="文件"/>
           <Avatar name="avatar" label="头像"/>
           <ImagePicker name="imgs" label="图片" multiple/>

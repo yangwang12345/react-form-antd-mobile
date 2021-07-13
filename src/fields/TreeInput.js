@@ -8,7 +8,7 @@ const { useOnChange } = hooks;
 
 const Item = List.Item;
 
-const TreeInput = ({ className, value: propsValue, placeholder, onChange, treeData, ...props }) => {
+const TreeInput = ({ className, value: propsValue, okText, placeholder, onChange, treeData, ...props }) => {
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState(propsValue);
   const labels = useMemo(() => {
@@ -35,43 +35,52 @@ const TreeInput = ({ className, value: propsValue, placeholder, onChange, treeDa
     setValue(propsValue);
   }, [propsValue]);
   return (
-    <Item className={className} arrow="horizontal" onClick={() => {
-      setVisible(true);
-    }}>
-      {labels || placeholder || '请选择'}
-      <Modal wrapClassName="react-form__tree-input" visible={visible}
-             title={<Flex>
-               <Button size="small" inline onClick={(e) => {
+    <div className={className}>
+      <Item arrow="horizontal" onClick={() => {
+        setVisible(true);
+      }}>
+        {labels || placeholder || '请选择'}
+        <Modal wrapClassName="react-form__tree-input" visible={visible}
+               title={<Flex className="react-form__model-title">
+               <span className="react-form__model-back" onClick={(e) => {
                  e.stopPropagation();
                  setVisible(false);
                  setValue(propsValue);
-               }}>返回</Button>
-               <Flex.Item>{placeholder || '请选择'}</Flex.Item>
-               <Button type="primary" size="small" inline onClick={(e) => {
+               }}/>
+                 <Flex.Item className="react-form__model-center">{placeholder || '请选择'}</Flex.Item>
+               </Flex>}
+               onClose={(e) => {
                  e.stopPropagation();
                  setVisible(false);
-                 onChange(value);
-               }}>确定</Button>
-             </Flex>}
-             onClose={(e) => {
-               e.stopPropagation();
-               setVisible(false);
-             }}>
-        <Tree {...props} selectedKeys={value} onSelect={(selectedKeys) => {
-          setValue(selectedKeys);
-        }} treeData={treeData}/>
-      </Modal>
-    </Item>
+               }}>
+          <div className="react-form__model-inner">
+            <Tree {...props} selectedKeys={value} onSelect={(selectedKeys) => {
+              setValue(selectedKeys);
+            }} treeData={treeData}/>
+          </div>
+          <div className="react-form__model-footer">
+            <Button type="primary" className="react-form__model-ok-btn" onClick={(e) => {
+              e.stopPropagation();
+              setVisible(false);
+              onChange(value);
+            }}>{okText}</Button>
+          </div>
+        </Modal>
+      </Item>
+    </div>
   );
 };
 
 TreeInput.defaultProps = {
-  value: []
+  value: [],
+  okText: '确定'
 };
 
 const _TreeInput = (props) => {
   const render = useOnChange(withComponentPropsClassName(props, 'type-tree-input'));
   return render(TreeInput);
 };
+
+_TreeInput.field = TreeInput;
 
 export default _TreeInput;
